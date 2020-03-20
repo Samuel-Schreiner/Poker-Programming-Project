@@ -1,10 +1,13 @@
+#include <iostream>
+#include <string>
 class Client
 {
 	public:
+	
 		Client();
 		int getIDno();
 		int getName();
-		setName();
+		void setName();
 	private:
 		int IDno;
 		std::string Name;

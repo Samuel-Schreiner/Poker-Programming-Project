@@ -1,4 +1,5 @@
 #include "Client.h"
+
 // #include "Player.h"
 
 Client::Client()
@@ -9,7 +10,7 @@ int Client::getIDno
 {
 }
 
-int Client::getName()
+std::string Client::getName()
 {
 }
 

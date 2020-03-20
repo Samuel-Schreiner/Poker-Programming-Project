@@ -2,14 +2,14 @@ class Player : public Client
 {
 	public:
 		Player();
-		Card getCards()
-		setCards();
+		Card getCards();
+		void setCards();
 		int getMoney();
-		setMoney();
+		void setMoney();
 		int getBet();
-		setBet();
+		void setBet();
 		
 	private:
 		Card Cards[5];
-		int money;
+		int money = 100;
 		int bet;
