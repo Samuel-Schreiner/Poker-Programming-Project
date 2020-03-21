@@ -13,11 +13,11 @@ HFILES = Card.h / Client.h / Player.h
 CFLAGS = -g -std=c++11
 
 all : $(EXE)
-	
+
 $(EXE): $(OBJ1) $(OBJ2) $(OBJ3) $(OBJ4)
 	g++ $(CFLAGS) $(OBJ1) $(OBJ2) $(OBJ3) $(OBJ4) -o $(EXE)
 
-$(OBJ1) : $(SRC1) $(HFILES)
+$(OBJ1): $(SRC1) $(HFILES)
 	g++ -c $(CFLAGS) $(SRC1) -o $(OBJ1)
 
 $(OBJ2) : $(SRC2) $(HFILES)
@@ -26,5 +26,5 @@ $(OBJ2) : $(SRC2) $(HFILES)
 $(OBJ3) : $(SRC3) $(HFILES)
 	g++ -c $(CFLAGS) $(SRC3) -o $(OBJ3)
 
-$(OBJ3) : $(SRC3) $(HFILES)
-	g++ -c $(CFLAGS) $(SRC3) -o $(OBJ3)
+$(OBJ4) : $(SRC4) $(HFILES)
+	g++ -c $(CFLAGS) $(SRC4) -o $(OBJ4)

@@ -1,3 +1,5 @@
+#ifndef CLIENT
+#define CLIENT
 #include <iostream>
 #include <string>
 class Client
@@ -6,10 +8,11 @@ class Client
 	
 		Client();
 		int getIDno();
-		int getName();
+		std::string getName();
 		void setName();
 	private:
 		int IDno;
 		std::string Name;
 		
 };
+#endif

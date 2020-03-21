@@ -4,7 +4,7 @@ Player::Player()
 {
 }
 
-Card::Card Player::getCards()
+Card Player::getCards()
 {
 }
 

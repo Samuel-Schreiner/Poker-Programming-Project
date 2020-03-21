@@ -1,3 +1,6 @@
+#ifndef CARD
+#define CARD
+
 class Card
 {
 	public:
@@ -15,3 +18,5 @@ class Card
 		/*jpeg?*/ int cImg;
 		
 };
+
+#endif

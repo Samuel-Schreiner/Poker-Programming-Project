@@ -6,7 +6,7 @@ Client::Client()
 {
 }
 
-int Client::getIDno
+int Client::getIDno()
 {
 }
 
