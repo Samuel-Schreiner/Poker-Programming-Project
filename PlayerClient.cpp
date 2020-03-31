@@ -3,11 +3,9 @@
 #include "Player.h"
 #include <string>
 #include <iostream>
-#include <chrono>
-#include <thread>
 #include <stdlib.h>
 
-enum {OFF, TOO_MANY, NOT_ENOUGH, GOOD, OVER}
+enum {OFF, TOO_MANY, NOT_ENOUGH, GOOD, OVER};
 
 int dealerConnect(int& IDno)
 {
@@ -23,10 +21,12 @@ int dealerConnect(int& IDno)
 	int status;
 	std::cout << "Current status?" << std::endl;
 	std::cin >> status;
+	std::cin.ignore(256, '\n');
+	std::cin.clear();
 	status = GOOD;
 //*****************************************************************************
 
-	return DealerStatus;
+	return status;
 }
 
 std::string Naming()
@@ -39,6 +39,8 @@ std::string Naming()
 //*****************************************************************************
 	std::cout << "You must input additional namelons" << std::endl;
 	std::cin >> name;
+	std::cin.ignore(256, '\n');
+	std::cin.clear();
 //*****************************************************************************
 	
 	return name;
@@ -52,26 +54,32 @@ int retrieveData()
 	int status;
 	std::cout << "Current status?" << std::endl;
 	std::cin >> status;
+	std::cin.ignore(256, '\n');
+	std::cin.clear();
 //*****************************************************************************	
 	return status;
 	
 }
 
-int getCard(Card& card, int i)
+int getCard(Card& cards, int i)
 {
 //Temporary code	
 //*****************************************************************************
 	int val;
 	int suit;
 	
-	std::cout "enter your card" << std::endl;
+	std::cout << "enter your card" << std::endl;
 	
 		std::cout << "\nCard " << i << "Value: ";
 		std::cin >> val;
-		cards[i].setcValue(val);
+		std::cin.ignore(256, '\n');
+		std::cin.clear();
+		cards.setcValue(val);
 		std::cout << "\nCard " << i << "Suit: ";
 		std::cin >> suit;
-		cards[i].setcSuit(suit);
+		std::cin.ignore(256, '\n');
+		std::cin.clear();
+		cards.setcSuit(suit);
 //*****************************************************************************
 	return 0;
 }
@@ -82,48 +90,49 @@ int playLoop(int money)
 	int invalid;
 	int Turn = 0;
 	Card cards[5];
-	getCards(cards);
 	int pot;
 	int bet;
 	std::string choice;
 	std::string suits[4] = {"Clubs", "Diamonds", "Hearts", "Spades"};
+	int game = 0;
+	for(int i = 0; i < 5; i++)
+	{
+		getCard(cards[i], i);
+	}
 	while(game != OVER)
 	{
 //Temporary code	
 //*****************************************************************************
 
-		for(int i = 0; i < 5; i++)
-		{
-			getCard(cards[i], i);
-		}
 		invalid = 1;
-		system("CLS");
+		system("clear");
 		std::cout << "Your Money: " << money;
 		std::cout << "The pot: " << pot;
 		for(int i = 0; i < 5; i++)
 		{
-			std::cout << " [";
-			cards[i].getcValue
-			std::cout << "/"
-			std::cout << suits[cards[i].getcSuit] << "] ";
+			std::cout << " [" << cards[i].getcValue() << "/" << suits[cards[i].getcSuit()] << "] ";
 		}
 		
 		switch(Turn) 
 		{
 			case 0 :
-			std::cout << "It is not your turn"
+			std::cout << "It is not your turn";
 			Turn = retrieveData();
 			break;
 			
 			case 1 :
 			std::cout << "It is your turn, do you want to raise, call, or fold? (r, c, f)" << std::endl;
 			std::cin >> choice;
+			std::cin.ignore(256, '\n');
+			std::cin.clear();
 			if(choice == "r" || choice == "raise")
 			{
 				while(invalid)
 				{
-					std::cout << raise by what amount?
+					std::cout << "raise by what amount?";
 					std::cin >> bet;
+					std::cin.ignore(256, '\n');
+					std::cin.clear();
 					if(bet <= money)
 					{
 						money = money - bet;
@@ -143,8 +152,10 @@ int playLoop(int money)
 			for(int j = 0; j < 5; j++)
 			{
 				std::cout << "Do you wish to remove Card " << j << "? (y/n)" << std::endl;
-				cin >> choice;
-				if(choice == y)
+				std::cin >> choice;
+				std::cin.ignore(256, '\n');
+				std::cin.clear();
+				if(choice == "y")
 				{
 					getCard(cards[j], j); 
 				}
@@ -152,18 +163,18 @@ int playLoop(int money)
 			Turn = retrieveData();
 			break;
 			case 3 :
-			std::cout << "You won!"
+			std::cout << "You won!";
 			game = OVER;
 			break;
 			case 4 :
-			std::cout << "You Lost!"
+			std::cout << "You Lost!";
 			game = OVER;
 			break;
 			
 			default :
 			break;
 			
-			
+		}	
 	}
 }
 
@@ -175,11 +186,11 @@ int main()
 	int status;
 	int money = -1;
 	// connect to dealer
-	status = dealerConnect();
+	status = dealerConnect(IDno);
 	
 	while(status == NOT_ENOUGH)
 	{
-		status = dealerConnect();
+		status = dealerConnect(IDno);
 	}
 	
 	while(status == GOOD && choice != "q" && choice != "quit" && money != 0)
@@ -187,11 +198,15 @@ int main()
 //Temporary code	
 //*****************************************************************************
 		std::cout << "Do you wish to play, watch, or quit p, w, or q?" << std::endl;
+		std::cin.ignore(256, '\n');
+		std::cin.clear();
 		std::cin >> choice;
+		std::cin.ignore(256, '\n');
+		std::cin.clear();
 		if(choice == "p" || choice == "play")
 		{
 			name = Naming();
-			playLoop;
+			playLoop(money);
 		}
 		else if(choice == "w" || choice == "watch")
 		{
